@@ -49,11 +49,11 @@ export class UserStore {
     const result = await conn
         .query(sql, [b.firstName, b.lastName, b.password])
 
-    const User = result.rows[0]
+    const user = result.rows[0]
 
     conn.release()
 
-    return User
+    return user
       } catch (err) {
           throw new Error(`Could not add new User ${b.firstName}. Error: ${err}`)
       }
@@ -67,11 +67,11 @@ export class UserStore {
 
     const result = await conn.query(sql, [id])
 
-    const User = result.rows[0]
+    const user = result.rows[0]
 
     conn.release()
 
-    return User
+    return user
       } catch (err) {
           throw new Error(`Could not delete User ${id}. Error: ${err}`)
       }
