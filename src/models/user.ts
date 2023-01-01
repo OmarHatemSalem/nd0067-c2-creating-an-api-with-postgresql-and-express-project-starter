@@ -1,4 +1,5 @@
 import client from "../database";
+import bcrypt from 'bcrypt'
 
 export type User = {
     id: number;
@@ -45,9 +46,14 @@ export class UserStore {
     const sql = 'INSERT INTO users (firstName, lastName, password) VALUES($1, $2, $3) RETURNING *'
     // @ts-ignore
     const conn = await Client.connect()
+    
+    const hash = bcrypt.hashSync(
+      b.password = pepper,
+      parseInt(saltRounds)
+    )
 
     const result = await conn
-        .query(sql, [b.firstName, b.lastName, b.password])
+        .query(sql, [b.firstName, b.lastName, hash])
 
     const user = result.rows[0]
 
@@ -76,4 +82,28 @@ export class UserStore {
           throw new Error(`Could not delete User ${id}. Error: ${err}`)
       }
   }
+
+  async authenticate(username: string, password: string): Promise<User | null> {
+    // @ts-ignore
+    const conn = await client.connect()
+    const sql = 'SELECT password_digest FROM users WHERE username=($1)'
+
+    const result = await conn.query(sql, [username])
+
+    console.log(password+pepper)
+
+    if(result.rows.length) {
+
+      const user = result.rows[0]
+
+      console.log(user)
+
+      if (bcrypt.compareSync(password+pepper, user.password_digest)) {
+        return user
+      }
+    }
+
+    return null
+  }
 }
+
