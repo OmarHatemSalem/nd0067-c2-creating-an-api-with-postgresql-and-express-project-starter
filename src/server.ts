@@ -1,6 +1,9 @@
 import express, { Request, Response } from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
+import userRoutes from './handlers/user_handler'
+import productRoutes from './handlers/product_handler'
+
 const app: express.Application = express()
 const address: string = "0.0.0.0:3000"
 
@@ -19,6 +22,10 @@ app.get('/', function (req: Request, res: Response) {
 app.get('/test-cors', cors(), function (req, res, next) {
     res.json({msg: 'This is CORS enabled with a middle ware'})
 })
+
+userRoutes(app)
+productRoutes(app)
+userRoutes(app)
 
 app.listen(3000, function () {
     console.log(`starting app on: ${address}`)
