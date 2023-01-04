@@ -85,7 +85,7 @@ const userRoutes = (app: express.Application) => {
   app.get('/users', index)
   app.get('/users/:id', show)
   app.post('/users', create)
-  app.post('/users/:id', update)
+  app.put('/users/:id', update)
   app.delete('/users', destroy)
 }
 
