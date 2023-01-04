@@ -65,3 +65,4 @@ describe("User Model", () => {
     expect(result).toEqual([]);
   });
 });
+

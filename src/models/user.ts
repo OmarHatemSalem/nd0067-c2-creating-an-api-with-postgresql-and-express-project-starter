@@ -48,9 +48,9 @@ export class UserStore {
     const conn = await Client.connect()
     
     const hash = bcrypt.hashSync(
-      b.password = pepper,
-      parseInt(saltRounds)
-    )
+      b.password + process.env.pepper,
+      Number(process.env.saltRounds)
+    );
 
     const result = await conn
         .query(sql, [b.firstName, b.lastName, hash])
@@ -90,7 +90,7 @@ export class UserStore {
 
     const result = await conn.query(sql, [username])
 
-    console.log(password+pepper)
+    console.log(password+process.env.pepper)
 
     if(result.rows.length) {
 
@@ -98,7 +98,7 @@ export class UserStore {
 
       console.log(user)
 
-      if (bcrypt.compareSync(password+pepper, user.password_digest)) {
+      if (bcrypt.compareSync(password+process.env.pepper, user.password_digest)) {
         return user
       }
     }
