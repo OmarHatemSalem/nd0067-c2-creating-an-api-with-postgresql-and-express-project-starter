@@ -35,8 +35,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 exports.__esModule = true;
 exports.OrderStore = void 0;
+var database_1 = __importDefault(require("../database"));
 var OrderStore = /** @class */ (function () {
     function OrderStore() {
     }
@@ -47,7 +51,7 @@ var OrderStore = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        return [4 /*yield*/, Client.connect()];
+                        return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
                         sql = 'SELECT * FROM orders';
@@ -72,7 +76,7 @@ var OrderStore = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
                         sql = 'SELECT * FROM orders WHERE id=($1)';
-                        return [4 /*yield*/, Client.connect()];
+                        return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
                         return [4 /*yield*/, conn.query(sql, [id])];
@@ -95,12 +99,12 @@ var OrderStore = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        sql = 'INSERT INTO Orders (productID, quantity, userID, status) VALUES($1, $2, $3, $4) RETURNING *';
-                        return [4 /*yield*/, Client.connect()];
+                        sql = 'INSERT INTO orders (userID, status) VALUES($1, $2) RETURNING *';
+                        return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
                         return [4 /*yield*/, conn
-                                .query(sql, [b.productID, b.quantity, b.userID, b.status])];
+                                .query(sql, [b.userID, b.status])];
                     case 2:
                         result = _a.sent();
                         order = result.rows[0];
@@ -121,8 +125,8 @@ var OrderStore = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        sql = 'DELETE FROM Orders WHERE id=($1)';
-                        return [4 /*yield*/, Client.connect()];
+                        sql = 'DELETE FROM orders WHERE id=($1)';
+                        return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
                         return [4 /*yield*/, conn.query(sql, [id])];

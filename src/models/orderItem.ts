@@ -1,9 +1,7 @@
-import client from "../database";
+import Client from "../database";
 
 export type Order = {
-    id: number;
-    productID: number;
-    quantity: number;
+    id?: number;
     userID: number;
     status: boolean;
 }
@@ -43,12 +41,12 @@ export class OrderStore {
 
   async create(b: Order): Promise<Order> {
       try {
-    const sql = 'INSERT INTO Orders (productID, quantity, userID, status) VALUES($1, $2, $3, $4) RETURNING *'
+    const sql = 'INSERT INTO orders (userID, status) VALUES($1, $2) RETURNING *'
     // @ts-ignore
     const conn = await Client.connect()
 
     const result = await conn
-        .query(sql, [b.productID, b.quantity, b.userID, b.status])
+        .query(sql, [b.userID, b.status])
 
     const order = result.rows[0]
 
@@ -62,7 +60,7 @@ export class OrderStore {
 
   async delete(id: string): Promise<Order> {
       try {
-    const sql = 'DELETE FROM Orders WHERE id=($1)'
+    const sql = 'DELETE FROM orders WHERE id=($1)'
     // @ts-ignore
     const conn = await Client.connect()
 

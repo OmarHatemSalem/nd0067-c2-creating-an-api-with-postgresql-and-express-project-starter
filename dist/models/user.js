@@ -52,7 +52,7 @@ var UserStore = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        return [4 /*yield*/, Client.connect()];
+                        return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
                         sql = 'SELECT * FROM users';
@@ -77,7 +77,7 @@ var UserStore = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
                         sql = 'SELECT * FROM users WHERE id=($1)';
-                        return [4 /*yield*/, Client.connect()];
+                        return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
                         return [4 /*yield*/, conn.query(sql, [id])];
@@ -101,7 +101,7 @@ var UserStore = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
                         sql = 'INSERT INTO users (firstName, lastName, password) VALUES($1, $2, $3) RETURNING *';
-                        return [4 /*yield*/, Client.connect()];
+                        return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
                         hash = bcrypt_1["default"].hashSync(b.password + process.env.pepper, Number(process.env.saltRounds));
@@ -128,7 +128,7 @@ var UserStore = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
                         sql = 'DELETE FROM users WHERE id=($1)';
-                        return [4 /*yield*/, Client.connect()];
+                        return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
                         return [4 /*yield*/, conn.query(sql, [id])];
@@ -150,7 +150,7 @@ var UserStore = /** @class */ (function () {
             var conn, sql, result, user;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, database_1["default"].connect()];
+                    case 0: return [4 /*yield*/, client.connect()];
                     case 1:
                         conn = _a.sent();
                         sql = 'SELECT password_digest FROM users WHERE username=($1)';

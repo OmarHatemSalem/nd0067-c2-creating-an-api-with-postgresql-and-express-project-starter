@@ -35,8 +35,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 exports.__esModule = true;
 exports.ProductStore = void 0;
+var database_1 = __importDefault(require("../database"));
 var ProductStore = /** @class */ (function () {
     function ProductStore() {
     }
@@ -47,7 +51,7 @@ var ProductStore = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        return [4 /*yield*/, Client.connect()];
+                        return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
                         sql = 'SELECT * FROM Prodcuts';
@@ -72,7 +76,7 @@ var ProductStore = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
                         sql = 'SELECT * FROM prodcuts WHERE id=($1)';
-                        return [4 /*yield*/, Client.connect()];
+                        return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
                         return [4 /*yield*/, conn.query(sql, [id])];
@@ -96,7 +100,7 @@ var ProductStore = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
                         sql = 'INSERT INTO prodcuts (name, price) VALUES($1, $2) RETURNING *';
-                        return [4 /*yield*/, Client.connect()];
+                        return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
                         return [4 /*yield*/, conn
@@ -122,7 +126,7 @@ var ProductStore = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
                         sql = 'DELETE FROM Prodcuts WHERE id=($1)';
-                        return [4 /*yield*/, Client.connect()];
+                        return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
                         return [4 /*yield*/, conn.query(sql, [id])];
