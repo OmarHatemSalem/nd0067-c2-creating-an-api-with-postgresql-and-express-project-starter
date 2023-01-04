@@ -71,8 +71,7 @@ var create = function (req, res) { return __awaiter(void 0, void 0, void 0, func
                 user = {
                     firstName: req.body.firstName,
                     lastName: req.body.lastName,
-                    password: req.body.password,
-                    id: 0
+                    password: req.body.password
                 };
                 _a.label = 1;
             case 1:
@@ -100,8 +99,7 @@ var authenticate = function (req, res) { return __awaiter(void 0, void 0, void 0
                 user = {
                     firstName: req.body.firstName,
                     lastName: req.body.lastName,
-                    password: req.body.password,
-                    id: 0
+                    password: req.body.password
                 };
                 _a.label = 1;
             case 1:

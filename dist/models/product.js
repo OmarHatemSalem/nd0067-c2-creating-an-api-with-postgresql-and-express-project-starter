@@ -54,7 +54,7 @@ var ProductStore = /** @class */ (function () {
                         return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
-                        sql = 'SELECT * FROM Prodcuts';
+                        sql = 'SELECT * FROM products';
                         return [4 /*yield*/, conn.query(sql)];
                     case 2:
                         result = _a.sent();
@@ -62,7 +62,7 @@ var ProductStore = /** @class */ (function () {
                         return [2 /*return*/, result.rows];
                     case 3:
                         err_1 = _a.sent();
-                        throw new Error("Could not get Prodcuts. Error: ".concat(err_1));
+                        throw new Error("Could not get products. Error: ".concat(err_1));
                     case 4: return [2 /*return*/];
                 }
             });
@@ -75,7 +75,7 @@ var ProductStore = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        sql = 'SELECT * FROM prodcuts WHERE id=($1)';
+                        sql = 'SELECT * FROM products WHERE id=($1)';
                         return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
@@ -86,7 +86,7 @@ var ProductStore = /** @class */ (function () {
                         return [2 /*return*/, result.rows[0]];
                     case 3:
                         err_2 = _a.sent();
-                        throw new Error("Could not find Prodcut ".concat(id, ". Error: ").concat(err_2));
+                        throw new Error("Could not find product ".concat(id, ". Error: ").concat(err_2));
                     case 4: return [2 /*return*/];
                 }
             });
@@ -94,12 +94,12 @@ var ProductStore = /** @class */ (function () {
     };
     ProductStore.prototype.create = function (b) {
         return __awaiter(this, void 0, void 0, function () {
-            var sql, conn, result, prodcut, err_3;
+            var sql, conn, result, product, err_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        sql = 'INSERT INTO prodcuts (name, price) VALUES($1, $2) RETURNING *';
+                        sql = 'INSERT INTO products (name, price) VALUES($1, $2) RETURNING *';
                         return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
@@ -107,12 +107,12 @@ var ProductStore = /** @class */ (function () {
                                 .query(sql, [b.name, b.price])];
                     case 2:
                         result = _a.sent();
-                        prodcut = result.rows[0];
+                        product = result.rows[0];
                         conn.release();
-                        return [2 /*return*/, prodcut];
+                        return [2 /*return*/, product];
                     case 3:
                         err_3 = _a.sent();
-                        throw new Error("Could not add new Prodcut ".concat(b.name, ". Error: ").concat(err_3));
+                        throw new Error("Could not add new product ".concat(b.name, ". Error: ").concat(err_3));
                     case 4: return [2 /*return*/];
                 }
             });
@@ -120,24 +120,24 @@ var ProductStore = /** @class */ (function () {
     };
     ProductStore.prototype["delete"] = function (id) {
         return __awaiter(this, void 0, void 0, function () {
-            var sql, conn, result, prodcut, err_4;
+            var sql, conn, result, product, err_4;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        sql = 'DELETE FROM Prodcuts WHERE id=($1)';
+                        sql = 'DELETE FROM products WHERE id=($1)';
                         return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
                         return [4 /*yield*/, conn.query(sql, [id])];
                     case 2:
                         result = _a.sent();
-                        prodcut = result.rows[0];
+                        product = result.rows[0];
                         conn.release();
-                        return [2 /*return*/, prodcut];
+                        return [2 /*return*/, product];
                     case 3:
                         err_4 = _a.sent();
-                        throw new Error("Could not delete Prodcut ".concat(id, ". Error: ").concat(err_4));
+                        throw new Error("Could not delete product ".concat(id, ". Error: ").concat(err_4));
                     case 4: return [2 /*return*/];
                 }
             });

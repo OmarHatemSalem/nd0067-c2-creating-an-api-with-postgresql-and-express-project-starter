@@ -84,8 +84,7 @@ var create = function (req, res) { return __awaiter(void 0, void 0, void 0, func
                 _c.trys.push([1, 3, , 4]);
                 product = {
                     name: req.body.name,
-                    price: req.body.price,
-                    id: 0
+                    price: req.body.price
                 };
                 return [4 /*yield*/, store.create(product)];
             case 2:

@@ -69,11 +69,8 @@ var create = function (req, res) { return __awaiter(void 0, void 0, void 0, func
             case 0:
                 _a.trys.push([0, 2, , 3]);
                 order = {
-                    productID: req.body.productID,
-                    quantity: req.body.quantity,
                     userID: req.body.userID,
-                    status: req.body.status,
-                    id: 0
+                    status: req.body.status
                 };
                 return [4 /*yield*/, store.create(order)];
             case 1:

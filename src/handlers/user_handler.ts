@@ -20,7 +20,6 @@ const create = async (req: Request, res: Response) => {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         password: req.body.password,
-        id:0
     }
     try {
         const newUser = await store.create(user)
@@ -37,7 +36,6 @@ const authenticate = async (req: Request, res: Response) => {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         password: req.body.password,
-        id:0
     }
     try {
         const u = await store.authenticate(user.firstName, user.password)

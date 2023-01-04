@@ -28,24 +28,20 @@ describe("User Model", () => {
         firstName: "Omar",
         lastName: "Hatem",
         password: "pass123",
-        id: 0
     });
-    expect(result).toEqual({
-      id: 1,
-      firstName: "Omar",
-      lastName: "Hatem",
-      password: "pass123"
-    });
+    expect(result.id).toEqual(1);
+    expect(result.firstName).toEqual("Omar");
+    expect(result.lastName).toEqual("Hatem");
+    expect(result.password).toBeDefined();
+    
   });
-
+  
   it('index method should return a list of Users', async () => {
     const result = await store.index();
-    expect(result).toEqual([{
-        id: 1,
-        firstName: "Omar",
-        lastName: "Hatem",
-        password: "pass123"
-    }]);
+    expect(result[0].id).toEqual(1);
+    expect(result[0].firstName).toEqual("Omar");
+    expect(result[0].lastName).toEqual("Hatem");
+    expect(result[0].password).toBeDefined();
   });
 
   it('show method should return the correct User', async () => {

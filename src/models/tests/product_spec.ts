@@ -25,7 +25,6 @@ describe("Product Model", () => {
 
   it('create method should add a Product', async () => {
     const result = await store.create({
-      id:0,
       name: "Udacity Nanodegree",
       price: 300
     });

@@ -9,7 +9,7 @@ dotenv_1["default"].config();
 var _a = process.env, POSTGRES_HOST = _a.POSTGRES_HOST, POSTGRES_DB = _a.POSTGRES_DB, POSTGRES_USER = _a.POSTGRES_USER, POSTGRES_PASSWORD = _a.POSTGRES_PASSWORD, POSTGRES_TEST_DB = _a.POSTGRES_TEST_DB, ENV = _a.ENV;
 var Client = new pg_1.Pool();
 console.log(ENV);
-if (ENV === 'test') {
+if (ENV === 'dev') {
     Client = new pg_1.Pool({
         host: POSTGRES_HOST,
         database: POSTGRES_DB,
@@ -17,7 +17,7 @@ if (ENV === 'test') {
         password: POSTGRES_PASSWORD
     });
 }
-if (ENV === 'dev') {
+if (ENV === 'test') {
     Client = new pg_1.Pool({
         host: POSTGRES_HOST,
         database: POSTGRES_TEST_DB,
