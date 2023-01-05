@@ -28,7 +28,7 @@ const create = async (req: Request, res: Response) => {
     try {
         const product: Product = {
             name: req.body.name,
-            price: req.body.price,
+            price: req.body.price
         }
         
         const newProduct = await store.create(product)

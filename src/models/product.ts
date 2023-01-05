@@ -41,7 +41,7 @@ export class ProductStore {
 
   async create(b: Product): Promise<Product> {
       try {
-    const sql = 'INSERT INTO products (name, price) VALUES($1, $2) RETURNING *'
+    const sql = 'INSERT INTO products (_name, price) VALUES($1, $2) RETURNING *'
     // @ts-ignore
     const conn = await Client.connect()
 
